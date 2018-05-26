@@ -1,13 +1,9 @@
-package io.sweetfab.sweetideapi.models.vaos;
+package io.sweetfab.sweetideapi.models.dtos;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-public class UserVao {
+public class UserDTO {
     private String nickname, id, pw, name, email, phone, token;
 
-    public UserVao(String id, String pw, String name, String nickname, String email, String phone, String token) {
+    public UserDTO(String id, String pw, String name, String nickname, String email, String phone, String token) {
         this.id = id;
         this.pw = pw;
         this.name = name;

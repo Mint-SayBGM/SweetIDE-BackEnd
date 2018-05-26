@@ -1,26 +1,26 @@
 package io.sweetfab.sweetideapi.models.daos;
 
-import io.sweetfab.sweetideapi.models.vaos.UserVao;
+import io.sweetfab.sweetideapi.models.dtos.UserDTO;
 
-public interface UserDao {
+public interface UserDAO {
 
     /**
      * 매개변수로 받은 유저를 DataBase 에 추가.
      * 성공시 true, 실패시 false 반환
      */
-    boolean addUser(UserVao user);
+    boolean addUser(UserDTO user);
 
     /**
      * 매개변수로 받은 유저를 DataBase 에서 제거.
      * 성공시 true, 실패시 false 반환
      */
-    boolean deleteUser(UserVao user);
+    boolean deleteUser(UserDTO user);
 
     /**
      * 매개변수로 받은 token 을 가진 유저를 반환.
      * 실패시 null 반환
      */
-    UserVao getUser(String token);
+    UserDTO getUser(String token);
 
     /**
      * 매개변수로 받은 id 와 pw 를 가진 유저의 token 을 반환
