@@ -36,10 +36,10 @@ public class DB {
         }
     }
 
-    private static PreparedStatement build(String query, Object... args) {
+    private static PreparedStatement build(String sql, Object... args) {
         PreparedStatement stmt = null;
         try {
-            stmt = connection.prepareStatement(query);
+            stmt = connection.prepareStatement(sql);
             int count = 1;
             for (Object o : args) {
                 stmt.setObject(count++, o);
@@ -50,8 +50,8 @@ public class DB {
         return stmt;
     }
 
-    public static int executeUpdate(String query, Object... args) {
-        PreparedStatement stmt = build(query, args);
+    public static int executeUpdate(String sql, Object... args) {
+        PreparedStatement stmt = build(sql, args);
         try {
             return stmt.executeUpdate();
         } catch (SQLException e) {
@@ -60,8 +60,8 @@ public class DB {
         }
     }
 
-    public static ResultSet executeQuery(String query, Object... args) {
-        PreparedStatement stmt = build(query, args);
+    public static ResultSet executeQuery(String sql, Object... args) {
+        PreparedStatement stmt = build(sql, args);
         try {
             return stmt.executeQuery();
         } catch (SQLException e) {

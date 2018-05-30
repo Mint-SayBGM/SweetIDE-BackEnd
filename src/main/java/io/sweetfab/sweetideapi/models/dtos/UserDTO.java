@@ -1,24 +1,37 @@
 package io.sweetfab.sweetideapi.models.dtos;
 
-public class UserDTO {
-    private String nickname, id, pw, name, email, phone, token;
+import java.sql.Array;
+import java.sql.Date;
 
-    public UserDTO(String id, String pw, String name, String nickname, String email, String phone, String token) {
-        this.id = id;
+public class UserDTO {
+    private String uid, name, pw, nickname, email, phone;
+    private Array plan, credit;
+    private Date lastpayment;
+    private String refreshtoken;
+
+    public UserDTO(String uid, String name, String pw, String nickname, String email, String phone, Array plan, Array credit, Date lastpayment, String refreshtoken) {
+        this.uid = uid;
         this.pw = pw;
         this.name = name;
         this.nickname = nickname;
         this.email = email;
         this.phone = phone;
-        this.token = token;
+        this.plan = plan;
+        this.credit = credit;
+        this.lastpayment = lastpayment;
+        this.refreshtoken = refreshtoken;
+    }
+
+    public UserDTO(String id, String pw, String nickname, String email, String phone) {
+        this(null, id, pw, nickname, email, phone, null, null, null, null);
     }
 
     public String getEmail() {
         return email;
     }
 
-    public String getId() {
-        return id;
+    public String getUid() {
+        return uid;
     }
 
     public String getName() {
@@ -37,7 +50,24 @@ public class UserDTO {
         return pw;
     }
 
-    public String getToken() {
-        return token;
+    public Date getLastpayment() {
+        return lastpayment;
+    }
+
+    public String getRefreshtoken() {
+        return refreshtoken;
+    }
+
+    public Array getCredit() {
+        return credit;
+    }
+
+    public Array getPlan() {
+        return plan;
+    }
+
+    @Override
+    public String toString() {
+        return this.nickname;
     }
 }
