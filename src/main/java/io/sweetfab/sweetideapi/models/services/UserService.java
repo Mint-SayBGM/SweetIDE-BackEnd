@@ -1,5 +1,6 @@
 package io.sweetfab.sweetideapi.models.services;
 
+import io.sweetfab.sweetideapi.exceptions.UserException;
 import io.sweetfab.sweetideapi.models.daos.UserDAO;
 import io.sweetfab.sweetideapi.models.dtos.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +17,11 @@ public class UserService {
         return userDAO.addUser(user);
     }
 
-    public UserDTO login(String uid, String pw) {
+    public UserDTO login(String uid, String pw) throws UserException {
         return userDAO.getUser(uid, pw);
     }
 
-    public String getInfo(String token) {
+    public String getInfo(String token) throws UserException {
         return userDAO.getUserInfo(token);
     }
 }
