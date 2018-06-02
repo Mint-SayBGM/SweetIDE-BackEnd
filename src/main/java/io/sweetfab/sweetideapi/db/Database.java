@@ -14,17 +14,17 @@ import java.sql.SQLException;
  * @since 2018-05-26
  */
 
-public class DB {
+public class Database {
     @Autowired
     private static JdbcTemplate jdbc;
 
-    private static DB DB = new DB();
+    private static Database DB = new Database();
     private static Connection connection;
 
-    private DB() {
+    private Database() {
     }
 
-    public static DB getInstance() {
+    public static Database getInstance() {
         return DB;
     }
 
