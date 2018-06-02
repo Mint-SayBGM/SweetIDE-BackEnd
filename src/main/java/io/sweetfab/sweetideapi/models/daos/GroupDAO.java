@@ -10,6 +10,5 @@ import io.sweetfab.sweetideapi.models.dtos.GroupDTO;
  */
 
 public class GroupDAO {
-    private Database database = Database.getInstance();
 
 }

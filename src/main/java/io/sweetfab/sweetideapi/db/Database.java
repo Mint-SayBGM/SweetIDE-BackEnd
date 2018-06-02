@@ -15,18 +15,10 @@ import java.sql.SQLException;
  */
 
 public class Database {
+
     @Autowired
     private static JdbcTemplate jdbc;
-
-    private static Database DB = new Database();
     private static Connection connection;
-
-    private Database() {
-    }
-
-    public static Database getInstance() {
-        return DB;
-    }
 
     static {
         try {
