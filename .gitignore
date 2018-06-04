@@ -1,4 +1,3 @@
-
 # Created by https://www.gitignore.io/api/java,jetbrains+all
 
 ### Java ###
@@ -92,5 +91,16 @@ modules.xml
 .idea/misc.xml
 *.ipr
 
+### Maven ###
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
 
-# End of https://www.gitignore.io/api/java,jetbrains+all
+# Avoid ignoring Maven wrapper jar file (.jar files are usually ignored)
+!/.mvn/wrapper/maven-wrapper.jar
