@@ -4,8 +4,6 @@ import io.sweetfab.sweetideapi.db.Database;
 import io.sweetfab.sweetideapi.exceptions.UserException;
 import io.sweetfab.sweetideapi.models.daos.UserDAO;
 import io.sweetfab.sweetideapi.models.dtos.UserDTO;
-import org.apache.catalina.User;
-import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
@@ -14,7 +12,7 @@ import java.sql.*;
 public class MariaDBUserDAO implements UserDAO {
 
     @Override
-    public boolean addUser(UserDTO user) {
+    public boolean createUser(UserDTO user) {
         return Database.executeUpdate("INSERT INTO user(UID, NAME, PW, NICKNAME, EMAIL, PHONE, PLAN, CREDIT, LASTPAYMENT, REFRESHTOKEN) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                 user.getUid(), user.getName(), user.getName(), user.getPw(), user.getNickname(), user.getEmail(), user.getPhone(), user.getPlan(), user.getCredit(),
                 user.getLastpayment(), user.getRefreshtoken()) != 0;

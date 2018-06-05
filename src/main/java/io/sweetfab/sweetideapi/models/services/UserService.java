@@ -14,7 +14,7 @@ public class UserService {
 
     public boolean registration(String id, String pw, String nickname, String email, String phone) {
         UserDTO user = new UserDTO(id, pw, nickname, email, phone);
-        return userDAO.addUser(user);
+        return userDAO.createUser(user);
     }
 
     public UserDTO login(String uid, String pw) throws UserException {

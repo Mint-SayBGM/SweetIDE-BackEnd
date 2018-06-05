@@ -9,7 +9,7 @@ public interface UserDAO {
      * 매개변수로 받은 유저를 Database 에 추가.
      * 성공시 true, 실패시 false 반환
      */
-    boolean addUser(UserDTO user);
+    boolean createUser(UserDTO user);
 
     /**
      * 매개변수로 받은 유저를 Database 에서 제거.

@@ -25,7 +25,7 @@ public class AccountController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = prefix+"/registration", method = RequestMethod.POST)
+    @RequestMapping(value = prefix + "/registration", method = RequestMethod.POST)
     public ResponseEntity<?> registration(@RequestBody String json) throws ParseException {
         JSONObject params = (JSONObject) new JSONParser().parse(json);
         JSONObject result = new JSONObject();
@@ -41,7 +41,7 @@ public class AccountController {
         return new ResponseEntity<>(result, success ? HttpStatus.CREATED : HttpStatus.BAD_REQUEST);
     }
 
-    @RequestMapping(value = prefix+"/login", method = RequestMethod.POST)
+    @RequestMapping(value = prefix + "/login", method = RequestMethod.POST)
     public ResponseEntity<?> login(@RequestBody String json) throws ParseException {
         JSONObject params = (JSONObject) new JSONParser().parse(json);
         JSONObject result = new JSONObject();
@@ -62,7 +62,7 @@ public class AccountController {
         }
     }
 
-    @RequestMapping(value = prefix+"/info", method = RequestMethod.GET)
+    @RequestMapping(value = prefix + "/info", method = RequestMethod.GET)
     public ResponseEntity<?> info(@RequestBody String json) throws ParseException {
         JSONObject params = (JSONObject) new JSONParser().parse(json);
         JSONObject result = new JSONObject();

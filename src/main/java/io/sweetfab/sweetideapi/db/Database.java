@@ -23,7 +23,7 @@ public class Database {
     static {
         try {
             connection = jdbc.getDataSource().getConnection();
-        } catch (SQLException e) {
+        } catch (SQLException | NullPointerException e) {
             e.printStackTrace();
         }
     }
