@@ -30,9 +30,9 @@ public interface UserDAO {
     String getUserToken(String uid, String pw) throws UserException;
 
     /**
-     * 매개변수로 받은 token
+     * 매개변수로 받은 token 을 가진 유저의 nickname, name, id를 반환
      * 실패시 UserException 이유는 getMessage()
     */
-    String getUserInfo(String token) throws UserException;
+    String[] getUserInfo(String token) throws UserException;
 
 }

@@ -17,11 +17,20 @@ public class UserService {
         return userDAO.createUser(user);
     }
 
+    public boolean delete(String id, String pw) {
+        try {
+            UserDTO user = this.login(id, pw);
+            return userDAO.deleteUser(user);
+        } catch (UserException e) {
+            return false;
+        }
+    }
+
     public UserDTO login(String uid, String pw) throws UserException {
         return userDAO.getUser(uid, pw);
     }
 
-    public String getInfo(String token) throws UserException {
+    public String[] getInfo(String token) throws UserException {
         return userDAO.getUserInfo(token);
     }
 }

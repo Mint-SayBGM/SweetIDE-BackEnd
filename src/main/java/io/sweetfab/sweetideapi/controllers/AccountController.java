@@ -1,5 +1,6 @@
 package io.sweetfab.sweetideapi.controllers;
 
+import io.sweetfab.sweetideapi.exceptions.UserException;
 import io.sweetfab.sweetideapi.models.dtos.UserDTO;
 import io.sweetfab.sweetideapi.models.services.UserService;
 import org.json.simple.JSONObject;
@@ -41,6 +42,19 @@ public class AccountController {
         return new ResponseEntity<>(result, success ? HttpStatus.CREATED : HttpStatus.BAD_REQUEST);
     }
 
+    @RequestMapping(value = prefix + "/delete", method = RequestMethod.DELETE)
+    public ResponseEntity<?> delete(@RequestBody String json) throws ParseException {
+        JSONObject params = (JSONObject) new JSONParser().parse(json);
+        JSONObject result = new JSONObject();
+
+        String id = (String) params.get("id");
+        String pw = (String) params.get(("pw"));
+
+        boolean success = this.userService.delete(id, pw);
+
+        return new ResponseEntity<>(result, success ? HttpStatus.NO_CONTENT : HttpStatus.BAD_REQUEST);
+    }
+
     @RequestMapping(value = prefix + "/login", method = RequestMethod.POST)
     public ResponseEntity<?> login(@RequestBody String json) throws ParseException {
         JSONObject params = (JSONObject) new JSONParser().parse(json);
@@ -69,14 +83,15 @@ public class AccountController {
 
         try {
             String token = (String) params.get("token");
-            String info = this.userService.getInfo(token);
+            String[] info = this.userService.getInfo(token);
 
-            result.put("nickname", info);
+            result.put("nickname", info[0]);
+            result.put("name", info[1]);
+            result.put("id", info[2]);
             return new ResponseEntity<>(result, HttpStatus.OK);
         } catch (Exception e) {
             result.put("reason", e.getMessage());
             return new ResponseEntity<>(result, HttpStatus.FORBIDDEN);
         }
     }
-
 }

@@ -46,7 +46,7 @@ public class MariaDBUserDAO implements UserDAO {
     @Override
     public String getUserToken(String uid, String pw) throws UserException{
         try {
-            ResultSet set = Database.executeQuery("SELECT REFRESHTOKEN FROM user WHERE UID = ? AND PW = ?", uid);
+            ResultSet set = Database.executeQuery("SELECT REFRESHTOKEN, PW FROM user WHERE UID = ? AND PW = ?", uid);
 
             if (!pw.equals(set.getString("PW"))) {
                 throw new UserException("Password is not correct");
@@ -59,10 +59,14 @@ public class MariaDBUserDAO implements UserDAO {
     }
 
     @Override
-    public String getUserInfo(String token) throws UserException{
+    public String[] getUserInfo(String token) throws UserException{
         try {
+            String[] result = new String[3];
             ResultSet set = Database.executeQuery("SELECT NICKNAME FROM user WHERE REFRESHTOKEN = ?", token);
-            return set.getString("NICKNAME");
+            result[0] = set.getString("NICKNAME");
+            result[1] = set.getString("NAME");
+            result[2] = set.getString("UID");
+            return result;
         } catch (Exception e) {
             throw new UserException("Token is not correct");
         }
