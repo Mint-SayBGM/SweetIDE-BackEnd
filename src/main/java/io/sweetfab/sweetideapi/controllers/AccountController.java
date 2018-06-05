@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * @author hwangseonu
  * @version 1.0
- * @since 2018-5-
+ * @since 2018-5-25
  */
 @RestController
 public class AccountController {

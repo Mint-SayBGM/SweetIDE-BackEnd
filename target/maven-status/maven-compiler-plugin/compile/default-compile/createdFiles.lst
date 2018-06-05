@@ -1,9 +1,0 @@
-io/sweetfab/sweetideapi/controllers/AccountController.class
-io/sweetfab/sweetideapi/SweetIdeApiApplication.class
-io/sweetfab/sweetideapi/models/daos/GroupDAO.class
-io/sweetfab/sweetideapi/models/daos/mariadbDaos/MariaDBUserDAO.class
-io/sweetfab/sweetideapi/controllers/GroupController.class
-io/sweetfab/sweetideapi/db/DB.class
-io/sweetfab/sweetideapi/models/dtos/UserDTO.class
-io/sweetfab/sweetideapi/models/dtos/GroupDTO.class
-io/sweetfab/sweetideapi/models/daos/UserDAO.class

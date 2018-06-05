@@ -18,19 +18,20 @@ public interface UserDAO {
     boolean deleteUser(UserDTO user);
 
     /**
-     * 매개변수로 받은 token 을 가진 유저를 반환.
-     * 실패시 null 반환
+     * 매개변수로 받은 uid 를 가진 유저를 반환.
+     * 실패시 UserException 이유는 getMessage()
      */
     UserDTO getUser(String uid, String password) throws UserException;
 
     /**
      * 매개변수로 받은 id 와 pw 를 가진 유저의 token 을 반환
-     * 실패시 null 반환
+     * 실패시 UserException 이유는 getMessage()
      */
     String getUserToken(String uid, String pw) throws UserException;
 
     /**
      * 매개변수로 받은 token
+     * 실패시 UserException 이유는 getMessage()
     */
     String getUserInfo(String token) throws UserException;
 
