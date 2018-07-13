@@ -1,15 +1,13 @@
 package io.sweetfab.sweetideapi.models.dtos;
 
-import java.sql.Array;
-import java.sql.Date;
 
 public class ProjectDTO {
     private int id;
     private String source, uid, projectName, description, modules;
-    private Array projectType, boardType;
-    private Date created, lastEdited;
+    private String projectType, boardType;
+    private String created, lastEdited;
 
-    public ProjectDTO(int id, String source, String uid, String projectName, String description, String modules, Array projectType, Array boardType, Date created, Date lastEdited) {
+    public ProjectDTO(int id, String source, String uid, String projectName, String description, String modules, String projectType, String boardType, String created, String lastEdited) {
         this.id = id;
         this.source = source;
         this.uid = uid;
@@ -20,6 +18,11 @@ public class ProjectDTO {
         this.boardType = boardType;
         this.created = created;
         this.lastEdited = lastEdited;
+    }
+
+    public ProjectDTO() {
+        //TODO
+
     }
 
     public int getId() {
@@ -46,19 +49,19 @@ public class ProjectDTO {
         return modules;
     }
 
-    public Array getProjectType() {
+    public String getProjectType() {
         return projectType;
     }
 
-    public Array getBoardType() {
+    public String getBoardType() {
         return boardType;
     }
 
-    public Date getCreated() {
+    public String getCreated() {
         return created;
     }
 
-    public Date getLastEdited() {
+    public String getLastEdited() {
         return lastEdited;
     }
 }

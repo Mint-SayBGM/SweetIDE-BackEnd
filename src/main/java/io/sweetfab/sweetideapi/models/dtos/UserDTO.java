@@ -1,15 +1,13 @@
 package io.sweetfab.sweetideapi.models.dtos;
 
-import java.sql.Array;
-import java.sql.Date;
 
 public class UserDTO {
     private String uid, name, pw, nickname, email, phone;
-    private Array plan, credit;
-    private Date lastpayment;
+    private String plan, credit;
+    private String lastpayment;
     private String refreshtoken;
 
-    public UserDTO(String uid, String name, String pw, String nickname, String email, String phone, Array plan, Array credit, Date lastpayment, String refreshtoken) {
+    public UserDTO(String uid, String name, String pw, String nickname, String email, String phone, String plan, String credit, String lastpayment, String refreshtoken) {
         this.uid = uid;
         this.pw = pw;
         this.name = name;
@@ -50,7 +48,7 @@ public class UserDTO {
         return pw;
     }
 
-    public Date getLastpayment() {
+    public String getLastpayment() {
         return lastpayment;
     }
 
@@ -58,11 +56,11 @@ public class UserDTO {
         return refreshtoken;
     }
 
-    public Array getCredit() {
+    public String getCredit() {
         return credit;
     }
 
-    public Array getPlan() {
+    public String getPlan() {
         return plan;
     }
 

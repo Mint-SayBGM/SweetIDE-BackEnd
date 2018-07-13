@@ -26,8 +26,18 @@ public class UserService {
         }
     }
 
+    public boolean edit(String token, String id, String pw, String nickname, String email) throws UserException {
+        return this.userDAO.editUserInfo(token, id, pw, nickname, email);
+
+    }
+
     public UserDTO login(String uid, String pw) throws UserException {
-        return userDAO.getUser(uid, pw);
+        UserDTO user = userDAO.getUser(uid);
+        if (!user.getPw().equals(pw)) {
+            throw new UserException("Password is not correct");
+        } else {
+            return user;
+        }
     }
 
     public String[] getInfo(String token) throws UserException {

@@ -24,19 +24,14 @@ public class MariaDBUserDAO implements UserDAO {
     }
 
     @Override
-    public UserDTO getUser(String userid, String password) throws UserException {
+    public UserDTO getUser(String userid) throws UserException {
         try {
             ResultSet set = Database.executeQuery("SELECT * FROM user WHERE UID = ?", userid);
             String uid = set.getString("UID"), name = set.getString("NAME"), pw = set.getString("PW");
             String nickname = set.getString("NICKNAME"), email = set.getString("EMAIL"), phone = set.getString("PHONE");
-            Array plan = set.getArray("PLAN"), credit = set.getArray("CREDIT");
-            Date lastpayment = set.getDate("LASTPAYMENT");
+            String plan = set.getObject("PLAN").toString(), credit = set.getObject("CREDIT").toString();
+            String lastpayment = set.getObject("LASTPAYMENT").toString();
             String refreshtoken = set.getString("REFRESHTOKEN");
-
-            if (!pw.equals(password)) {
-                throw new UserException("Password is not correct");
-            }
-
             return new UserDTO(uid, name, pw, nickname, email, phone, plan, credit, lastpayment, refreshtoken);
         } catch (Exception e) {
             throw new UserException("Username is not correct");
@@ -44,14 +39,9 @@ public class MariaDBUserDAO implements UserDAO {
     }
 
     @Override
-    public String getUserToken(String uid, String pw) throws UserException{
+    public String getUserToken(String uid) throws UserException{
         try {
             ResultSet set = Database.executeQuery("SELECT REFRESHTOKEN, PW FROM user WHERE UID = ? AND PW = ?", uid);
-
-            if (!pw.equals(set.getString("PW"))) {
-                throw new UserException("Password is not correct");
-            }
-
             return set.getString("REFRESHTOKEN");
         } catch (Exception e) {
             throw new UserException("Username is not correct");
