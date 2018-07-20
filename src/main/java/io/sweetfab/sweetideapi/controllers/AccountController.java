@@ -94,4 +94,18 @@ public class AccountController {
             return new ResponseEntity<>(result, HttpStatus.FORBIDDEN);
         }
     }
+
+    @RequestMapping(value = prefix + "/edit", method = RequestMethod.POST)
+    public ResponseEntity<?> edit(@RequestBody String json) throws ParseException {
+        JSONObject params = (JSONObject) new JSONParser().parse(json);
+        JSONObject result = new JSONObject();
+
+        try {
+            //TODO edit user info
+        } catch (Exception e) {
+            result.put("reason", e.getMessage());
+            return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
+        }
+    }
+
 }

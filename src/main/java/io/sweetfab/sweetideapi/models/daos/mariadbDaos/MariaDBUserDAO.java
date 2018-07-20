@@ -61,4 +61,16 @@ public class MariaDBUserDAO implements UserDAO {
             throw new UserException("Token is not correct");
         }
     }
+
+    @Override
+    public boolean editUserInfo(String token, String id, String pw, String nickname, String email) throws UserException {
+        try {
+            int result = Database.executeUpdate("UPDATE user SET UID=?, PW=?, NICKNAME=?, EMAIL=?, FROM REFRESHTOKEN=?", id, pw, nickname, email, token);
+            return true;
+            //TODO if not successful, return false
+        } catch (Exception e) {
+            throw new UserException(e.getMessage());
+        }
+    }
+
 }
