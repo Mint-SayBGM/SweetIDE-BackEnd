@@ -1,46 +1,29 @@
 package io.sweetfab.sweetideapi.models.services;
 
-import io.sweetfab.sweetideapi.exceptions.UserException;
-import io.sweetfab.sweetideapi.models.daos.UserDAO;
-import io.sweetfab.sweetideapi.models.dtos.UserDTO;
+import io.sweetfab.sweetideapi.models.entities.UserEntity;
+import io.sweetfab.sweetideapi.models.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service("userService")
+import java.util.Optional;
+
+@Service
 public class UserService {
 
     @Autowired
-    private UserDAO userDAO;
+    UserRepository repository;
 
-    public boolean registration(String id, String pw, String nickname, String email, String phone) {
-        UserDTO user = new UserDTO(id, pw, nickname, email, phone);
-        return userDAO.createUser(user);
-    }
-
-    public boolean delete(String id, String pw) {
-        try {
-            UserDTO user = this.login(id, pw);
-            return userDAO.deleteUser(user);
-        } catch (UserException e) {
+    public boolean addUser(String id, String pw, String name, String nickname, String email, String phone) {
+        if (repository.existsById(id)) {
             return false;
         }
+        UserEntity user = new UserEntity(id, pw, name, nickname, email, phone);
+        repository.save(user);
+        return true;
     }
 
-    public boolean edit(String token, String id, String pw, String nickname, String email) throws UserException {
-        return this.userDAO.editUserInfo(token, id, pw, nickname, email);
-
-    }
-
-    public UserDTO login(String uid, String pw) throws UserException {
-        UserDTO user = userDAO.getUser(uid);
-        if (!user.getPw().equals(pw)) {
-            throw new UserException("Password is not correct");
-        } else {
-            return user;
-        }
-    }
-
-    public String[] getInfo(String token) throws UserException {
-        return userDAO.getUserInfo(token);
+    public UserEntity getUser(String id, String pw) {
+        Optional<UserEntity> userOpt = repository.findByIdAndPw(id, pw);
+        return userOpt.orElse(null);
     }
 }
