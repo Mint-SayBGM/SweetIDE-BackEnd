@@ -27,6 +27,9 @@ public class UserEntity {
     private String phone;
 
     private List<String> plan;
+
+    @Column(length = 500, nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private LocalDateTime lastpayment;
 
 

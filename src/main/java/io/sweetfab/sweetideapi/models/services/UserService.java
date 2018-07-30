@@ -23,7 +23,10 @@ public class UserService {
     }
 
     public UserEntity getUser(String id, String pw) {
-        Optional<UserEntity> userOpt = repository.findByIdAndPw(id, pw);
-        return userOpt.orElse(null);
+        return repository.findByIdAndPw(id, pw).orElse(null);
+    }
+
+    public UserEntity getUserByToken(String token) {
+        return repository.findByRefreshtoken(token).orElse(null);
     }
 }

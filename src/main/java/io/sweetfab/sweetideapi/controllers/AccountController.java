@@ -5,10 +5,7 @@ import io.sweetfab.sweetideapi.models.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,7 +17,7 @@ public class AccountController {
     @Autowired
     UserService service;
 
-    @RequestMapping(value=prefix+"/registration", method=RequestMethod.POST)
+    @RequestMapping(path = prefix+"/registration", method = RequestMethod.POST)
     public ResponseEntity<?> registration(@RequestBody Map<String, String> json) {
         Map<String, Object> res = new HashMap<>();
 
@@ -38,7 +35,7 @@ public class AccountController {
         }
     }
 
-    @RequestMapping(value=prefix+"/login", method=RequestMethod.POST)
+    @RequestMapping(path = prefix+"/login", method = RequestMethod.POST)
     public ResponseEntity<?> login(@RequestBody Map<String, String> json) {
         Map<String, Object> res = new HashMap<>();
 
@@ -56,4 +53,18 @@ public class AccountController {
         }
     }
 
+    @RequestMapping(path = prefix+"/info", method = RequestMethod.GET)
+    public ResponseEntity<?> info(@RequestBody Map<String, String> json) {
+        Map<String, Object> res = new HashMap<>();
+         String token = json.get("token");
+
+         UserEntity user = service.getUserByToken(token);
+
+         if (user != null) {
+             res.put("nickname", user.getRefreshtoken());
+             return new ResponseEntity<>(res, HttpStatus.OK);
+         } else {
+             return new ResponseEntity<>(res, HttpStatus.FORBIDDEN);
+         }
+    }
 }
