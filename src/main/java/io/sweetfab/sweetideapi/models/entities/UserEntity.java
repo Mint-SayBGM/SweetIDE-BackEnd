@@ -1,56 +1,33 @@
 package io.sweetfab.sweetideapi.models.entities;
 
-import javax.persistence.*;
-import java.time.LocalDateTime;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name="user")
 public class UserEntity {
+
     @Id
-    @Column(length = 250, nullable = false)
-    private String id;
+    @Column(name="uid", length=250)
+    String id;
 
-    @Column(length = 250, nullable = false)
-    private String pw;
+    String pw;
+    String name;
+    String nickname;
+    String email;
+    String phone;
 
-    @Column(length = 50, nullable = false)
-    private String name;
+    Plan plan;
 
-    @Column(length = 50, nullable = false)
-    private String nickname;
+    Date lastpayment;
 
-    @Column(length = 50, nullable = false)
-    private String email;
+    String credit;
+    String refreshtoken;
 
-    @Column(length = 11, nullable = false)
-    private String phone;
+}
 
-    private List<String> plan;
+enum Plan {
 
-    @Column(length = 500, nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private LocalDateTime lastpayment;
-
-
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(nullable = false)
-    private String refreshtoken;
-
-    public UserEntity(String id, String pw, String name, String nickname, String email, String phone) {
-        this.id = id;
-        this.pw = pw;
-        this.name = name;
-        this.nickname = nickname;
-        this.email = email;
-        this.phone = phone;
-    }
-
-    public String getRefreshtoken() {
-        return refreshtoken;
-    }
-
-    public String getName() {
-        return name;
-    }
 }
