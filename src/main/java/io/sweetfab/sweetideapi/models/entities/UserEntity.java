@@ -4,30 +4,50 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 public class UserEntity {
 
     @Id
     @Column(name="uid", length=250)
-    String id;
+    private String id;
 
-    String pw;
-    String name;
-    String nickname;
-    String email;
-    String phone;
+    private String pw;
+    private String name;
+    private String nickname;
+    private String email;
+    private String phone;
 
-    Plan plan;
+    private Date lastpayment;
 
-    Date lastpayment;
+    private String credit;
+    private String refreshtoken;
 
-    String credit;
-    String refreshtoken;
+    public String getId() {
+        return id;
+    }
 
-}
+    public String getPw() {
+        return pw;
+    }
 
-enum Plan {
+    public String getName() {
+        return name;
+    }
 
+    public String getNickname() {
+        return nickname;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public boolean isValid() {
+        return this.id != null && this.pw != null && this.name != null && this.nickname != null && this.email != null && this.phone != null;
+    }
 }
