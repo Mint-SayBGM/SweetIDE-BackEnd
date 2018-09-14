@@ -1,53 +1,53 @@
 package io.sweetfab.sweetideapi.models.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@Table(name = "sweetide_user")
 public class UserEntity {
 
+    public enum Plan {
+        A,
+        B;
+    }
+
     @Id
-    @Column(name="uid", length=250)
+    @Column(name = "uid")
     private String id;
 
+    @Column(name = "pw")
     private String pw;
+
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "nickname")
     private String nickname;
+
+    @Column(name = "email")
     private String email;
+
+    @Column(name = "phone")
     private String phone;
 
-    private Date lastpayment;
+    @Column(name = "plan")
+    @Enumerated
+    private Plan plan;
 
+    @Column(name = "credit")
     private String credit;
-    private String refreshtoken;
+
+    @Column(name = "lastpayment")
+    private Date lastpayment;
 
     public String getId() {
         return id;
     }
 
-    public String getPw() {
-        return pw;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getNickname() {
-        return nickname;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
     public boolean isValid() {
-        return this.id != null && this.pw != null && this.name != null && this.nickname != null && this.email != null && this.phone != null;
+        return this.id != null && this.pw != null && this.name != null &&
+                this.nickname != null && this.email != null&& this.phone != null;
     }
+
 }
