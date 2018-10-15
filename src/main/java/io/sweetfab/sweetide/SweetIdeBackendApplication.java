@@ -1,12 +1,12 @@
-package io.sweetfab.sweetideapi;
+package io.sweetfab.sweetide;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SweetIdeApiApplication {
+public class SweetIdeBackendApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SweetIdeApiApplication.class, args);
+        SpringApplication.run(SweetIdeBackendApplication.class, args);
     }
 }
